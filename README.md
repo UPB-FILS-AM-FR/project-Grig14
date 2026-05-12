@@ -26,26 +26,13 @@ Le capteur de couleur mesure les composantes rouge, verte et bleue reflechies pa
 
 En fonction de la couleur detectee, l'Arduino controle les servomoteurs pour orienter la rampe ou la trappe de tri. L'ecran OLED affiche les informations utiles, tandis que les LEDs et le buzzer indiquent l'etat du systeme.
 
-```text
-[Objet colore]
-      |
-      v
-[Capteur de couleur]
-      |
-      v
-[Arduino Uno/Nano]
-      |
-      |----> [Servomoteurs]
-      |          tri mecanique
-      |
-      |----> [Ecran OLED]
-      |          couleur + statistiques
-      |
-      |----> [LEDs + Buzzer]
-      |          feedback utilisateur
-      |
-      <---- [Boutons]
-                start / reset / calibration
+- Objet colore
+- Capteur de couleur
+- Arduino Uno/Nano
+- Servomoteurs pour le tri mecanique
+- Ecran OLED pour la couleur detectee et les statistiques
+- LEDs et buzzer pour le feedback utilisateur
+- Boutons pour start, reset et calibration
 
 ## Components
 
