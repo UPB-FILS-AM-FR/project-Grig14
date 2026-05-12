@@ -1,62 +1,76 @@
-# Your Project Name
-
-| | |
-|-|-|
-|`Author` | Your full name
+# Automatic Color Object Sorter
 
 ## Description
 
+Ce projet consiste en la realisation d'un trieur automatique d'objets par couleur.
+
+Le systeme utilise un capteur de couleur pour detecter la couleur dominante d'un petit objet place dans la zone de lecture. Les valeurs mesurees sont traitees par un microcontroleur Arduino, qui determine la categorie de l'objet: rouge, vert, bleu ou inconnu.
+
+Apres la detection, le systeme actionne un mecanisme controle par servomoteurs afin d'orienter l'objet vers le compartiment correspondant. Un ecran OLED affiche l'etat du systeme, la couleur detectee et le nombre d'objets tries.
+
+Le systeme inclut aussi des boutons pour lancer un cycle de tri, remettre les compteurs a zero ou entrer en mode calibration. Un buzzer et des LEDs fournissent un retour sonore et visuel.
+
 ## Motivation
+
+Ce projet a ete choisi parce qu'il combine plusieurs aspects importants des systemes embarques: lecture de capteurs, traitement des donnees, controle de moteurs, affichage local et interaction avec l'utilisateur.
+
+Il s'inspire des systemes industriels de tri automatique, utilises pour separer des objets selon leurs proprietes physiques. Une version reduite permet de comprendre le principe de fonctionnement avec des composants accessibles.
+
+Le projet est aussi adapte a une demonstration pratique, car le resultat est directement visible: un objet est detecte, sa couleur est reconnue, puis il est dirige vers le bon compartiment.
 
 ## Architecture
 
-### Block diagram
+Le systeme est controle par un Arduino Uno ou Arduino Nano.
 
-<!-- Make sure the path to the picture is correct -->
-![Block Diagram](schematics/block_diagram.png)
+Le capteur de couleur mesure les composantes rouge, verte et bleue reflechies par l'objet. Ces donnees sont envoyees au microcontroleur, qui les compare avec des seuils definis ou calibres.
 
-### Schematic
+En fonction de la couleur detectee, l'Arduino controle les servomoteurs pour orienter la rampe ou la trappe de tri. L'ecran OLED affiche les informations utiles, tandis que les LEDs et le buzzer indiquent l'etat du systeme.
 
-![Schematic](schematics/kicad_schematic.png)
-
-### Components
-
-
-<!-- This is just an example, fill in with your actual components -->
+```text
+[Objet colore]
+      |
+      v
+[Capteur de couleur]
+      |
+      v
+[Arduino Uno/Nano]
+      |
+      |----> [Servomoteurs]
+      |          tri mecanique
+      |
+      |----> [Ecran OLED]
+      |          couleur + statistiques
+      |
+      |----> [LEDs + Buzzer]
+      |          feedback utilisateur
+      |
+      <---- [Boutons]
+                start / reset / calibration
+## Components
 
 | Device | Usage | Price |
-|--------|--------|-------|
-| Activ Buzzer | Buzzer | [1.5 RON](https://www.optimusdigital.ro/ro/audio-buzzere/635-buzzer-activ-de-3-v.html?search_query=buzzer&results=61) |
-| Push Button | Button | [1 RON](https://www.optimusdigital.ro/ro/butoane-i-comutatoare/1119-buton-6x6x6.html?search_query=buton&results=222) |
-| Jumper Wires | Connecting components | [7 RON](https://www.optimusdigital.ro/ro/fire-fire-mufate/884-set-fire-tata-tata-40p-10-cm.html?search_query=set+fire&results=110) |
-| Breadboard | Project board | [10 RON](https://www.optimusdigital.ro/ro/prototipare-breadboard-uri/8-breadboard-830-points.html?search_query=breadboard&results=145) |
+| --- | --- | --- |
+| Arduino Uno ou Arduino Nano | Microcontroleur principal | ~35 RON |
+| Capteur de couleur TCS34725 ou TCS3200 | Detection de la couleur de l'objet | ~20 RON |
+| Servomoteurs SG90 ou MG90S | Orientation de la rampe ou de la trappe | ~15 RON x2 |
+| Ecran OLED SSD1306 128x64 I2C | Affichage de l'etat du systeme | ~25 RON |
+| Boutons poussoirs | Start, reset et calibration | ~2 RON x3 |
+| Buzzer passif | Signal sonore | ~4 RON |
+| LED RGB ou 3 LEDs simples | Signal visuel | ~3 RON |
+| Resistances 220 ohm | Protection des LEDs | ~1 RON |
+| Resistances 10k ohm | Pull-up/pull-down pour boutons | ~1 RON |
+| Breadboard | Prototypage du circuit | ~10 RON |
+| Fils jumper | Connexions | ~10 RON |
+| Cable USB | Programmation et alimentation | ~10 RON |
+| Alimentation externe 5V | Alimentation des servomoteurs | ~20 RON |
+| Materiel mecanique | Structure du trieur | carton / 3D print |
 
-### Libraries
-
-<!-- This is just an example, fill in the table with your actual components -->
+## Libraries
 
 | Library | Description | Usage |
-|---------|-------------|-------|
-| [lib-name1](link-to-lib) | official description of the lib | Used for accesing the peripherals of the microcontroller  |
-| [lib-name2](link-to-lib) | official description of the lib | Used for accesing the peripherals of the microcontroller  |
-
-## Log
-
-<!-- write every week your progress here -->
-
-### Week 6 - 12 May
-
-### Week 7 - 19 May
-
-### Week 20 - 26 May
-
-
-## Reference links
-
-<!-- Fill in with appropriate links and link titles -->
-
-[Tutorial 1](https://www.youtube.com/watch?v=wdgULBpRoXk&t=1s&ab_channel=BenEater)
-
-[Article 1](https://www.explainthatstuff.com/induction-motors.html)
-
-[Link title](https://projecthub.arduino.cc/)
+| --- | --- | --- |
+| Wire | Communication I2C | OLED et capteur TCS34725 |
+| Adafruit TCS34725 | Lecture du capteur de couleur | Detection RGB |
+| Adafruit SSD1306 | Driver pour l'ecran OLED | Affichage |
+| Adafruit GFX | Bibliotheque graphique | Texte et elements visuels |
+| Servo | Controle des servomoteurs | Mecanisme de tri |
