@@ -46,6 +46,7 @@ En fonction de la couleur detectee, l'Arduino controle les servomoteurs pour ori
       |
       <---- [Boutons]
                 start / reset / calibration
+
 ## Components
 
 | Device | Usage | Price |
